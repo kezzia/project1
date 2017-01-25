@@ -26,14 +26,16 @@
   (cond
     ((null? L) 0) ;if the list is empty return 0
     ((list? L) ;if the list is not empty
-      (if (not(number? (car L))) ;grab the first element and check to see if it's a number
-          (sum-up(cdr L)) ;if it is not a number, ignore it and continue the list
-          (if (not(list? (car L))) ;checks to see if the element it grabbed is a nested list
-              (+ (car L)(sum-up(cdr L))) ;if the element is not in a nested list, it's ok to add it normally
-              (display "this one is a list\n")
-          )
+      ;(display "L")
+      (if (list? (car L)) ;checks to see if the element it grabbed is a nested list
+        (sum-up(car L)) ;if the element is in a nested list, go into it
+        (if (number? (car L)) ; if not print it
+          (+ (car L)(sum-up(cdr L))) ;if the element is not in a nested list, it's ok to add it normally              
+          (sum-up(cdr L))
+        )
       )
     )
+    (else L)
   )
 )
 
@@ -43,6 +45,6 @@
 (sum-up'(a)) ;0
 (sum-up'(a 100 b 200 c 300 d)) ;600
 (sum-up'(())) ;0
-(sum-up'((100))) ;0
+(sum-up'((100))) ;100
 (sum-up'(100 (200))) ;300
-(sum-up'(a 100 b (200) c 300 d)) ;600 
+(sum-up'(a (100 900) b (200) c 300 d)) ;600 
