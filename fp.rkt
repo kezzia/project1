@@ -3,13 +3,11 @@
 
 (define (reverse-general L)
   (cond
-    ((null? L) L)
-    ((list? (car L))
-      (display "list not empty and has nested list\n")
-    )
-    (else
-      (append(cdr L)(list(car L)))
-    )
+    ((null? L)L) 
+    ((list? L) 
+      (append (reverse-general (cdr L))(list (reverse-general (car L)))
+    ))
+    (else L)
   )
 )
 
