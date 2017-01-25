@@ -17,7 +17,7 @@
     ((list? L) ;if the list is not empty
        (if (not(number? (car L))) ;check if the first entry is a number
           (sum-up(cdr L)) ;if the first entry is not a number, we ignore it and continue to the rest of the list
-          (display "the first entry is a number\n"))
+          (+(car L)(sum-up (cdr L))));if the first entry is a number, we keep it and add it to the first entry numbers of the other calls
     )
   )
 )
