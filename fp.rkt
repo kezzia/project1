@@ -14,10 +14,10 @@
 (define (sum-up L)
   (cond
     ((null? L) 0) ;if the list is empty return 0
-    ((list? L)
-       (if (number? (car L))
-          (display "there is a number\n")
-          (display "not a number\n"))
+    ((list? L) ;if the list is not empty
+       (if (not(number? (car L))) ;check if the first entry is a number
+          (sum-up(cdr L)) ;if the first entry is not a number, we ignore it and continue to the rest of the list
+          (display "the first entry is a number\n"))
     )
   )
 )
