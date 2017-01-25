@@ -27,18 +27,12 @@
     ((null? L) 0) ;if the list is empty return 0
     ((list? L) ;if the list is not empty
       (if (not(number? (car L))) ;grab the first element and check to see if it's a number
-              (sum-up(cdr L)) ;if it is not a number, ignore it and continue the list
-              (if (not(list? (car L)))
-                  (display "this one is not a list\n")
-                  (display "this one is a list\n")
-               )
+          (sum-up(cdr L)) ;if it is not a number, ignore it and continue the list
+          (if (not(list? (car L))) ;checks to see if the element it grabbed is a nested list
+              (+ (car L)(sum-up(cdr L))) ;if the element is not in a nested list, it's ok to add it normally
+              (display "this one is a list\n")
+          )
       )
-      ;if (not(list? (car L))) ;grab the first element and check to see if it is a nested list
-       ;   (display "this one is not a list\n")
-       ;   (display "this one is a list\n"))
-      ;(if (not(number? (car L)))
-      ;    (sum-up(cdr L))
-      ;    (car L))
     )
   )
 )
