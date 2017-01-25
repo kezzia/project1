@@ -26,7 +26,13 @@
   (cond
     ((null? L) 0) ;if the list is empty return 0
     ((list? L)
-      (car L))
+      (if (not(list? (car L)))
+          (display "this one is not a list\n")
+          (display "this one is a list\n"))
+      ;(if (not(number? (car L)))
+      ;    (sum-up(cdr L))
+      ;    (car L))
+    )
   )
 )
 
