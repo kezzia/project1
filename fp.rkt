@@ -1,10 +1,21 @@
 #lang racket
+
+
 (define (reverse-general L)
-  (if (null? L)
-      (quote "the list is empty")
-  (quote "the list is not empty")
+  (cond
+    ((null? L) L)
+    ((list? (car L))
+      (display "list not empty and has nested list\n")
+      (reverse-general (car L))
+    )
+    (else
+      (display "list not empty and normal\n")
+      (list (cdr L) (car L))
+      
+    )
   )
 )
+
 
 (reverse-general '())
 (reverse-general '(a b c))
