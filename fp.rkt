@@ -13,9 +13,12 @@
 
 (define (sum-up L)
   (cond
-    ((null? L) 0)
+    ((null? L) 0) ;if the list is empty return 0
     ((list? L)
-       (display "L is not empty\n"))
+       (if (number? (car L))
+          (display "there is a number\n")
+          (display "not a number\n"))
+    )
   )
 )
 
