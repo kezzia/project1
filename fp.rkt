@@ -6,15 +6,13 @@
     ((null? L) L)
     ((list? (car L))
       (display "list not empty and has nested list\n")
-      (reverse-general (car L))
     )
     (else
-      (display "list not empty and normal\n")
-      (list (cdr L) (car L))
-      
+      (append(cdr L)(list(car L)))
     )
   )
 )
+
 
 
 (reverse-general '())
