@@ -10,3 +10,22 @@
     (else L) ;return the list
   )
 )
+
+(define (sum-up L)
+  (cond
+    ((null? L) 0)
+    ((list? L)
+       (display "L is not empty\n"))
+  )
+)
+
+(sum-up'()) ;0
+(sum-up'(100 200)) ;300
+(sum-up'(a b c)) ;0
+(sum-up'(100 a)) ;100
+(sum-up'(a 100)) ;100
+(sum-up'(a 100 b 200 c 300 d)) ;600
+(sum-up'(())) ;0
+(sum-up'((100))) ;0
+(sum-up'(100 (200))) ;100
+(sum-up'(a 100 b (200) c 300 d)) ;400 
