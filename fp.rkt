@@ -11,24 +11,31 @@
   )
 )
 
-(define (sum-up L)
+(define (sum-up-numbers-simple L)
   (cond
     ((null? L) 0) ;if the list is empty return 0
     ((list? L) ;if the list is not empty
        (if (not(number? (car L))) ;check if the first entry is a number
-          (sum-up(cdr L)) ;if the first entry is not a number, we ignore it and continue to the rest of the list
-          (+(car L)(sum-up (cdr L))));if the first entry is a number, we keep it and add it to the first entry numbers of the other calls
+          (sum-up-numbers-simple(cdr L)) ;if the first entry is not a number, we ignore it and continue to the rest of the list
+          (+(car L)(sum-up-numbers-simple (cdr L))));if the first entry is a number, we keep it and add it to the first entry numbers of the other calls
     )
   )
 )
 
+(define (sum-up L)
+  (cond
+    ((null? L) 0) ;if the list is empty return 0
+    ((list? L)
+      (car L))
+  )
+)
+
 (sum-up'()) ;0
+(sum-up'(100)) ;100
 (sum-up'(100 200)) ;300
-(sum-up'(a b c)) ;0
-(sum-up'(100 a)) ;100
-(sum-up'(a 100)) ;100
+(sum-up'(a)) ;0
 (sum-up'(a 100 b 200 c 300 d)) ;600
 (sum-up'(())) ;0
 (sum-up'((100))) ;0
-(sum-up'(100 (200))) ;100
-(sum-up'(a 100 b (200) c 300 d)) ;400 
+(sum-up'(100 (200))) ;300
+(sum-up'(a 100 b (200) c 300 d)) ;600 
