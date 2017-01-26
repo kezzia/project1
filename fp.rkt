@@ -22,22 +22,39 @@
   )
 )
 
+(define (sum-u L)
+  (cond
+    ((null? L) 0) ;if the list is empty return 0
+    ((list? L) ;if the list is not empty
+      (if (list? (car L)) ;checks to see if the element it grabbed is a nested list
+        (sum-up(car L)) ;if the element is in a nested list, go into it
+
+        (if (number? (car L)) ;if (car L) is not a list element check to see if it is a number
+          (+ (car L)(sum-up(cdr L))) ;if it is, it's ok to add it normally              
+          (sum-up(cdr L)) ;if it's not, ignore it
+        )
+      )
+    )
+  )
+)
+
 (define (sum-up L)
   (cond
     ((null? L) 0) ;if the list is empty return 0
     ((list? L) ;if the list is not empty
-      ;(display "L")
       (if (list? (car L)) ;checks to see if the element it grabbed is a nested list
         (sum-up(car L)) ;if the element is in a nested list, go into it
-        (if (number? (car L)) ; if not print it
-          (+ (car L)(sum-up(cdr L))) ;if the element is not in a nested list, it's ok to add it normally              
-          (sum-up(cdr L))
+
+        (if (number? (car L)) ;if (car L) is not a list element check to see if it is a number
+          (+ (car L)(sum-up(cdr L))) ;if it is, it's ok to add it normally              
+          (sum-up(cdr L)) ;if it's not, ignore it
         )
       )
     )
-    (else L)
   )
 )
+
+
 
 (sum-up'()) ;0
 (sum-up'(100)) ;100
@@ -47,4 +64,4 @@
 (sum-up'(())) ;0
 (sum-up'((100))) ;100
 (sum-up'(100 (200))) ;300
-(sum-up'(a (100 900) b (200) c 300 d)) ;600 
+(sum-up'(a 100 b (200) c 300 d)) ;600 
