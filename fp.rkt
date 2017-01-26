@@ -22,35 +22,12 @@
   )
 )
 
-(define (sum-u L)
-  (cond
-    ((null? L) 0) ;if the list is empty return 0
-    ((list? L) ;if the list is not empty
-      (if (list? (car L)) ;checks to see if the element it grabbed is a nested list
-        (sum-up(car L)) ;if the element is in a nested list, go into it
-
-        (if (number? (car L)) ;if (car L) is not a list element check to see if it is a number
-          (+ (car L)(sum-up(cdr L))) ;if it is, it's ok to add it normally              
-          (sum-up(cdr L)) ;if it's not, ignore it
-        )
-      )
-    )
-  )
-)
-
 (define (sum-up L)
   (cond
     ((null? L) 0) ;if the list is empty return 0
-    ((list? L) ;if the list is not empty
-      (if (list? (car L)) ;checks to see if the element it grabbed is a nested list
-        (sum-up(car L)) ;if the element is in a nested list, go into it
-
-        (if (number? (car L)) ;if (car L) is not a list element check to see if it is a number
-          (+ (car L)(sum-up(cdr L))) ;if it is, it's ok to add it normally              
-          (sum-up(cdr L)) ;if it's not, ignore it
-        )
-      )
-    )
+    ((list? (car L)) (display "this element is a list\n")) ;checks to see if the element it grabbed is a nested list)
+    ((number? (car L)) (display "this element is a number\n"))
+    (else (display "this element is not a number\n"))
   )
 )
 
