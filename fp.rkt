@@ -11,6 +11,7 @@
   )
 )
 
+;QUESTION 2
 (define (sum-up-numbers-simple L)
   (cond
     ((null? L) 0) ;if the list is empty return 0
@@ -22,22 +23,14 @@
   )
 )
 
-(define (sum-up L)
+;QUESTION 3
+(define (sum-up-numbers-general L)
   (cond
     ((null? L) 0) ;if the list is empty return 0
     ((list? (car L)) ;checks to see if the element it grabbed is a nested list
-        (+ (sum-up (car L)) (sum-up(cdr L)))) ;if so, enter it and return the sum of its contents
-    ((number? (car L)) (+ (car L) (sum-up (cdr L)))) ;if the element is a number, then it's ok to add it normally
-    (else (sum-up(cdr L)))
+        (+ (sum-up-numbers-general (car L)) (sum-up-numbers-general(cdr L)))) ;if so, enter it and return the sum of its contents
+    ((number? (car L)) (+ (car L) (sum-up-numbers-general (cdr L)))) ;if the element is a number, then it's ok to add it normally
+    (else (sum-up-numbers-general(cdr L))) ;otherwise, we ignore it
   )
 )
 
-(sum-up'()) ;0
-(sum-up'(100)) ;100
-(sum-up'(100 200)) ;300
-(sum-up'(a)) ;0
-(sum-up'(a 100 b 200 c 300 d)) ;600
-(sum-up'(())) ;0
-(sum-up'((100))) ;100
-(sum-up'(100 (200))) ;300
-(sum-up'(a 100 b (200) c 300 d)) ;600 
