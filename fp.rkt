@@ -25,13 +25,12 @@
 (define (sum-up L)
   (cond
     ((null? L) 0) ;if the list is empty return 0
-    ((list? (car L)) (display "this element is a list\n")) ;checks to see if the element it grabbed is a nested list)
+    ((list? (car L)) ;checks to see if the element it grabbed is a nested list
+        (+ (sum-up (car L)) (sum-up(cdr L)))) ;if so, enter it and return the sum of its contents
     ((number? (car L)) (display "this element is a number\n"))
     (else (display "this element is not a number\n"))
   )
 )
-
-
 
 (sum-up'()) ;0
 (sum-up'(100)) ;100
