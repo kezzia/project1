@@ -27,7 +27,7 @@
     ((null? L) 0) ;if the list is empty return 0
     ((list? (car L)) ;checks to see if the element it grabbed is a nested list
         (+ (sum-up (car L)) (sum-up(cdr L)))) ;if so, enter it and return the sum of its contents
-    ((number? (car L)) (display "this element is a number\n"))
+    ((number? (car L)) (+ (car L) (sum-up (cdr L)))) ;if the element is a number, then it's ok to add it normally
     (else (display "this element is not a number\n"))
   )
 )
